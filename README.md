@@ -5,8 +5,8 @@ All my config for neovim
 
 | Old key | Remap | Use |
 |---------|-------|-----|
-| <leader> | <spacebar> | Spacebar has now the leader use for instructions |
-| :Ex | <leader>pv | Back to explorer |
+| \<leader\> | \<spacebar\> | Spacebar has now the leader use for instructions |
+| :Ex | \<leader\>pv | Back to explorer |
 
 ## Cheatsheet
 
