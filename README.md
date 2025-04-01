@@ -49,3 +49,4 @@ Enter in `nvim` and run `:PackerSync`
 | ---          | ---                                                     |
 | \<leader\>u  | Toggle a undo tree buffer                               |
 | ---          | ---                                                     |
+| \<leader\>gs | Toggle a git manager                                    |
