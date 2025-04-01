@@ -1,6 +1,6 @@
 # Neovim Config
 
-All my config for neovim
+All my config for neovim based on 0 to LSP video from ThePrimeagen
 
 ## Installation
 
