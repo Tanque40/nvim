@@ -35,6 +35,17 @@ Enter in `nvim` and run `:PackerSync`
 | :w           | Write changes                                           |
 | :q           | Quite editor                                            |
 | :Ex          | Explorer                                                |
+| ---          | ---                                                     |
 | \<leader\>pf | Find files with telescope                               |
 | \<leader\>ps | Find project source files with telescope                |
 | Cntrl-p      | Find git managed repository source files with telescope |
+| ---          | ---                                                     |
+| \<leader\>a  | Add file to harpoon                                     |
+| Cntrl-e      | Show menu of files in harpoon                           |
+| Cntrl-h      | Quick go to the first file in harpoon buffer            |
+| Cntrl-t      | Quick go to the second file in harpoon buffer           |
+| Cntrl-n      | Quick go to the third file in harpoon buffer            |
+| Cntrl-s      | Quick go to the fourth file in harpoon buffer           |
+| ---          | ---                                                     |
+| \<leader\>u  | Toggle a undo tree buffer                               |
+| ---          | ---                                                     |
