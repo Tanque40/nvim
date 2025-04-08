@@ -10,15 +10,6 @@ Of corse first of all clone this repository on your `.config` directory
 git clone https://github.com/Tanque40/nvim.git ~/.config/nvim
 ```
 
-After clone the packer with the given instruction:
-
-```bash
-git clone --depth 1 https://github.com/wbthomason/packer.nvim\
- ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-```
-
-Enter in `nvim` and run `:PackerSync`
-
 ## Remaps
 
 | Old key    | Remap        | Use                                              |
