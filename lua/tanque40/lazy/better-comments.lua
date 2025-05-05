@@ -16,7 +16,15 @@ return {
           bg = "",
           bold = true,
           virtual_text = " 🤔",
+        },
+        {
+          name = "TODO",
+          fg = "#ff9812",
+          bg = "",
+          bold = false,
+          virtual_text = "",
         }
+
       }
     })
   end
