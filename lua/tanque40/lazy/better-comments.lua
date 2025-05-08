@@ -15,7 +15,7 @@ return {
           fg = "#20f5ff",
           bg = "",
           bold = true,
-          virtual_text = " 🤔",
+          virtual_text = "🤔",
         },
         {
           name = "TODO",
