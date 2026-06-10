@@ -1,0 +1,38 @@
+return {
+    "mfussenegger/nvim-lint",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+        local lint = require("lint")
+
+        lint.linters_by_ft = {
+            javascript = { "eslint_d" },
+            typescript = { "eslint_d" },
+            javascriptreact = { "eslint_d" },
+            typescriptreact = { "eslint_d" },
+            vue = { "eslint_d" }, -- ¡Indispensable para Nuxt!
+        }
+
+        local eslint = lint.linters.eslint_d
+
+        eslint.args = {
+          "--no-warn-ignored", -- Evita avisos molestos si ignoras archivos
+          "--config", "eslint.config.ts", -- 👈 Forzamos el archivo TS
+          "--format", "json",
+          "--stdin",
+          "--stdin-filename",
+          function()
+            return vim.api.nvim_buf_get_name(0)
+          end,
+        }
+        
+        -- Esto crea un "autocomando" para que el linter corra 
+        -- cada vez que entras al archivo, guardas o sales del modo insertar.
+        local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+        vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+            group = lint_augroup,
+            callback = function()
+                lint.try_lint()
+            end,
+        })
+    end,
+}
