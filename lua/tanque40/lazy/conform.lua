@@ -17,6 +17,12 @@ return {
                 yaml = { "prettier" },
                 markdown = { "prettier" },
                 graphql = { "prettier" },
+                rust = { "rustfmt" },
+            },
+            -- Formatea al guardar; si no hay formateador usa el del LSP
+            format_on_save = {
+                timeout_ms = 1000,
+                lsp_format = "fallback",
             },
             formatters = {
               -- Definimos un formateador custom para usar eslint_d en modo fix
@@ -26,5 +32,9 @@ return {
               },
             },
         })
+
+        vim.keymap.set({ "n", "v" }, "<leader>f", function()
+            conform.format({ async = true, lsp_format = "fallback" })
+        end, { desc = "Formatear archivo o selección" })
     end,
 }
