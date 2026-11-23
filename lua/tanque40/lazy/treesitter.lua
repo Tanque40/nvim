@@ -9,7 +9,7 @@ return {
 
         -- Parsers que siempre deben estar instalados (requiere `tree-sitter` CLI)
         ts.install({
-            "vimdoc", "javascript", "typescript", "c", "lua", "rust",
+            "vimdoc", "javascript", "typescript", "c", "cpp", "lua", "rust",
             "jsdoc", "bash", "templ", "markdown", "markdown_inline",
         })
 

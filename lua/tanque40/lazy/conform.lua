@@ -18,6 +18,8 @@ return {
                 markdown = { "prettier" },
                 graphql = { "prettier" },
                 rust = { "rustfmt" },
+                c = { "clang-format" },
+                cpp = { "clang-format" },
             },
             -- Formatea al guardar; si no hay formateador usa el del LSP
             format_on_save = {

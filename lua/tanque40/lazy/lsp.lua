@@ -70,6 +70,30 @@ return {
         vim.g.zig_fmt_parse_errors = 0
         vim.g.zig_fmt_autosave = 0
 
+        -- clangd viene con Xcode (/usr/bin/clangd), no con Mason
+        vim.lsp.config("clangd", {
+            cmd = {
+                "clangd",
+                "--background-index", -- indexa todo el proyecto para autocompletar tu código
+                "--clang-tidy", -- análisis de código adicional
+                "--header-insertion=iwyu", -- agrega #include al autocompletar
+                "--completion-style=detailed",
+                "--function-arg-placeholders=true",
+            },
+        })
+        vim.lsp.enable("clangd")
+
+        -- Herramientas que no son LSP (formateadores) instaladas con Mason
+        local registry = require("mason-registry")
+        registry.refresh(function()
+            for _, tool in ipairs({ "clang-format" }) do
+                local ok, pkg = pcall(registry.get_package, tool)
+                if ok and not pkg:is_installed() then
+                    pkg:install()
+                end
+            end
+        end)
+
         -- mason-lspconfig v2 activa solo (vim.lsp.enable) los servidores instalados
         require("mason-lspconfig").setup({
             ensure_installed = {
@@ -85,8 +109,15 @@ return {
                 -- El resto ya viene por defecto en nvim: K, grn, gra, grr, gri, gO
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 
-                -- Inlay hints (tipos inferidos) si el servidor los soporta
                 local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+                -- Alternar entre .cpp y .h
+                if client and client.name == "clangd" then
+                    vim.keymap.set("n", "<leader>h", "<cmd>LspClangdSwitchSourceHeader<CR>",
+                        { buffer = args.buf, desc = "C/C++: alternar source/header" })
+                end
+
+                -- Inlay hints (tipos inferidos) si el servidor los soporta
                 if client and client:supports_method("textDocument/inlayHint") then
                     vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
                 end
